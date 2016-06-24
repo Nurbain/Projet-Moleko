@@ -24,7 +24,7 @@
           HEIGHT = window.innerHeight;
 
       renderer = new THREE.WebGLRenderer({antialias:true});
-	  renderer.setClearColor(0x000000 );
+	  renderer.setClearColor(0xD8D8D8 );
       renderer.setSize(WIDTH, HEIGHT);
 	  renderer.localClippingEnabled;
       document.body.appendChild(renderer.domElement);
@@ -48,14 +48,14 @@
 	
 	//Lumière 
 	
-	var light = new THREE.PointLight(0xfffff3, 0.8);
+	var light = new THREE.AmbientLight(0xfffff3, 0.8);
       light.position.set(-100,200,100);
       scene.add(light);
 
 var sphereSize = 1; 
 var pointLightHelper = new THREE.PointLightHelper( light, sphereSize ); 
 scene.add( pointLightHelper );
-
+/*
       var light2 = new THREE.PointLight(0xd7f0ff, 0.2);
       light2.position.set(200,200,100);
       scene.add(light2);
@@ -63,22 +63,28 @@ scene.add( pointLightHelper );
 var sphereSize = 1; 
 var pointLightHelper2 = new THREE.PointLightHelper( light2, sphereSize ); 
 scene.add( pointLightHelper2 );
-
+*/
 var light3 = new THREE.PointLight(0xFFFFFF, 0.5);
-      light3.position.set(150,200,-100);
+      light3.position.set(-150,0,0);
       scene.add(light3);
 
 var sphereSize = 1; 
 var pointLightHelper3 = new THREE.PointLightHelper( light3, sphereSize ); 
 scene.add( pointLightHelper3 );
 
+var light4 = new THREE.PointLight(0xFFFFFF, 0.5);
+      light4.position.set(150,0,0);
+      scene.add(light4);
 
+var sphereSize = 1; 
+var pointLightHelper4 = new THREE.PointLightHelper( light4, sphereSize ); 
+scene.add( pointLightHelper4 );
 	//exportation de l'objet
 	
 	
 	var loader = new THREE.ColladaLoader();
 	loader.options.convertUpAxis = true;
-	loader.load( 'models/chloranil.dae', function ( collada ) {
+	loader.load( 'models/acide.dae', function ( collada ) {
 
     var dae = collada.scene;
 
