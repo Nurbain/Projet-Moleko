@@ -8,7 +8,6 @@
 <body> 
   <script src="js/three.min.js"></script>
   <script src="js/ColladaLoader.js"></script>
-
   <script src="js/OrbitControls.js"></script>
   
   <script>
@@ -24,7 +23,7 @@
           HEIGHT = window.innerHeight;
 
       renderer = new THREE.WebGLRenderer({antialias:true});
-	  renderer.setClearColor(0xD8D8D8 );
+	  renderer.setClearColor(0xffffff );
       renderer.setSize(WIDTH, HEIGHT);
 	  renderer.localClippingEnabled;
       document.body.appendChild(renderer.domElement);
@@ -48,14 +47,14 @@
 	
 	//Lumière 
 	
-	var light = new THREE.AmbientLight(0xfffff3, 0.8);
+	/*var light = new THREE.AmbientLight(0xfffff3, 0.8);
       light.position.set(-100,200,100);
       scene.add(light);
 
 var sphereSize = 1; 
 var pointLightHelper = new THREE.PointLightHelper( light, sphereSize ); 
-scene.add( pointLightHelper );
-/*
+scene.add( pointLightHelper );*/
+
       var light2 = new THREE.PointLight(0xd7f0ff, 0.2);
       light2.position.set(200,200,100);
       scene.add(light2);
@@ -63,7 +62,7 @@ scene.add( pointLightHelper );
 var sphereSize = 1; 
 var pointLightHelper2 = new THREE.PointLightHelper( light2, sphereSize ); 
 scene.add( pointLightHelper2 );
-*/
+
 var light3 = new THREE.PointLight(0xFFFFFF, 0.5);
       light3.position.set(-150,0,0);
       scene.add(light3);
