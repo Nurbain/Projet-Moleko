@@ -1,34 +1,4 @@
-import bpy,bmesh
-
-#Résoud les problèmes de scaling inverse
-
-def scaling() :
-	if bpy.context.active_object.scale.y < 0 :
-		bpy.ops.object.transform_apply(location=False , rotation=False , scale=True)
-		obj=bpy.context.active_object
-		bpy.ops.object.mode_set(mode='EDIT')
-		bpy.ops.mesh.select_all(action = 'SELECT')
-		bpy.ops.mesh.normals_make_consistent(inside=False)
-		bpy.ops.object.mode_set(mode='OBJECT')
-
-		
-def couleurcarb() :
-	mat = bpy.data.materials.new('noir')
-	mat.diffuse_color = (0,0,0)
-	mat.diffuse_shader = 'LAMBERT' 
-	mat.diffuse_intensity = 1.0
-	mat.specular_color = (1,1,1)
-	mat.specular_shader = 'COOKTORR'
-	mat.specular_intensity = 0.032
-	mat.ambient = 1
-	return mat
-	
-
-def setcouleur(obj,mat):
-	ob = obj.data
-	ob.materials.append(mat)
-
-	
+#Change autre
 def changementcarbon() :
 #sélectionne tout
 	bpy.ops.object.select_grouped(type='TYPE')
@@ -68,13 +38,4 @@ def changementcarbon() :
 #supression des modèles 
 	for n in range(0,nbr):
 		listem[n].select = True
-		bpy.ops.object.delete(use_global=False)
-	
-	
-		
-	
-			
-			
-	
-	
-	
+		bpy.ops.object.delete(use_global=False)		
