@@ -2,9 +2,10 @@
 #donc l'objet actif prend la place de l'ancien ( en gros )
 
 #UTILISATION :
-#sélectionner les hydrogènes a changer, lancer la commande "changementhydro()" dans la console python
+#sélectionner les hydrogènes a changer, lancer la commande "optimisation()" dans la console python
 
 #ne pas oublier de run toute les fonctions
+#le script marche seuleument quand les objets possèdent les nom hydrogènes/liaisonSimples
 
 import bpy
 
@@ -22,10 +23,11 @@ def couleurhydro() :
 
 #création de la couleur liaison	
 def couleurliaison() :
-	mat = bpy.data.materials.new('liaison')
-	mat.diffuse_color = (0.246,0.246,0.246)
+	mat = bpy.data.materials.new('blanc')
+	mat.diffuse_color = (1,1,1)
 	mat.diffuse_shader = 'LAMBERT' 
-	mat.diffuse_intensity = 0.3
+	mat.diffuse_intensity = 1.0
+	mat.specular_color = (1,1,1)
 	mat.specular_shader = 'COOKTORR'
 	mat.specular_intensity = 0.032
 	mat.ambient = 1
@@ -39,6 +41,7 @@ def setcouleur(obj,mat):
 
 
 def changementhydro():
+#sélectionne tout
 	bpy.ops.object.select_grouped(type='TYPE')
 	mat=couleurhydro()
 #sert de conteur pour créer nbr objet
@@ -76,11 +79,10 @@ def changementhydro():
 	for n in range(0,nbr):
 		listem[n].select = True
 		bpy.ops.object.delete(use_global=False)
-		
-
 
 
 def changementliaisons():
+#sélectionne tout
 	bpy.ops.object.select_grouped(type='TYPE')
 	mat=couleurliaison()
 #sert de conteur pour créer nbr objet
@@ -97,11 +99,13 @@ def changementliaisons():
 			listem.append(bpy.context.active_object)
 #création des nbr objets
 	for k in range(0,nbr):
+		bpy.context.scene.cursor_location = (0.0, 0.0, 0.0)
 		bpy.ops.mesh.primitive_cylinder_add()
-		obj=bpy.context.active_object
+		bpy.context.scene.cursor_location = (0,0,1)
 #mode edit
-		
+		bpy.ops.object.origin_set(type='ORIGIN_CURSOR')
 #modification scaling
+		obj=bpy.context.active_object
 		obj.scale = [listem[k].scale.x,listem[k].scale.y,listem[k].scale.z]
 #modification location
 		obj.location = [listem[k].location.x,listem[k].location.y,listem[k].location.z]
@@ -116,3 +120,9 @@ def changementliaisons():
 	for n in range(0,nbr):
 		listem[n].select = True
 		bpy.ops.object.delete(use_global=False)
+
+		
+def optimisation():
+	changementliaisons()
+	changementhydro()
+
