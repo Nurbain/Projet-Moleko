@@ -3,9 +3,9 @@
 
 import bpy,bmesh
 
-#Couleur hydrogène et liaison simple
+#Couleur hydrogène et liasion simple 
 def couleurhydro() :
-	mat = bpy.data.materials.new('blanc')
+	mat = bpy.data.materials.new('Hydro')
 	mat.diffuse_color = (1,1,1)
 	mat.diffuse_shader = 'LAMBERT' 
 	mat.diffuse_intensity = 1.0
@@ -15,8 +15,9 @@ def couleurhydro() :
 	mat.ambient = 1
 	return mat
 
+#Couleur carbone
 def couleurcarb() :
-	mat = bpy.data.materials.new('noir')
+	mat = bpy.data.materials.new('Carbon')
 	mat.diffuse_color = (0,0,0)
 	mat.diffuse_shader = 'LAMBERT' 
 	mat.diffuse_intensity = 1.0
@@ -25,10 +26,73 @@ def couleurcarb() :
 	mat.specular_intensity = 0.032
 	mat.ambient = 1
 	return mat
-	
+
+#Couleur azote
+def couleurazote() :
+	mat = bpy.data.materials.new('Azote')
+	mat.diffuse_color = (0,0.144,0.451)
+	mat.diffuse_shader = 'LAMBERT' 
+	mat.diffuse_intensity = 1.0
+	mat.specular_color = (1,1,1)
+	mat.specular_shader = 'COOKTORR'
+	mat.specular_intensity = 0.032
+	mat.ambient = 1
+	return mat
+
+#Couleur oxygène
+def couleuroxy() :
+	mat = bpy.data.materials.new('Oxy')
+	mat.diffuse_color = (0.617,0.034,0.010)
+	mat.diffuse_shader = 'LAMBERT' 
+	mat.diffuse_intensity = 1.0
+	mat.specular_color = (1,1,1)
+	mat.specular_shader = 'COOKTORR'
+	mat.specular_intensity = 0.032
+	mat.ambient = 1
+	return mat	
+
+#Couleur chlore
+def couleurchlore() :
+	mat = bpy.data.materials.new('Chlore')
+	mat.diffuse_color = (0,0.279,0.037)
+	mat.diffuse_shader = 'LAMBERT' 
+	mat.diffuse_intensity = 1.0
+	mat.specular_color = (1,1,1)
+	mat.specular_shader = 'COOKTORR'
+	mat.specular_intensity = 0.032
+	mat.ambient = 1
+	return mat
+
+#Couleur fluor
+def couleurfluor() :
+	mat = bpy.data.materials.new('Fluor')
+	mat.diffuse_color = (0.292,0.006,0.209)
+	mat.diffuse_shader = 'LAMBERT' 
+	mat.diffuse_intensity = 1.0
+	mat.specular_color = (1,1,1)
+	mat.specular_shader = 'COOKTORR'
+	mat.specular_intensity = 0.032
+	mat.ambient = 1
+	return mat
+
+#Couleur soufre
+def couleursoufre () :
+	mat = bpy.data.materials.new('Soufre')
+	mat.diffuse_color = (1,0.6,0)
+	mat.diffuse_shader = 'LAMBERT' 
+	mat.diffuse_intensity = 1.0
+	mat.specular_color = (1,1,1)
+	mat.specular_shader = 'COOKTORR'
+	mat.specular_intensity = 0.032
+	mat.ambient = 1
+	return mat
+
+#Met la couleur
 def setcouleur(obj,mat):
 	ob = obj.data
 	ob.materials.append(mat)
+
+#Change les hydrogènes
 
 def changementhydro():
 #sélectionne tout
@@ -69,7 +133,8 @@ def changementhydro():
 	for n in range(0,nbr):
 		listem[n].select = True
 		bpy.ops.object.delete(use_global=False)
-		
+
+#Change les Lisaions simples	
 def changementliaisons():
 #sélectionne tout
 	bpy.ops.object.select_grouped(type='TYPE')
@@ -110,47 +175,74 @@ def changementliaisons():
 		listem[n].select = True
 		bpy.ops.object.delete(use_global=False)
 
-def changementcarbon() :
+		
+def changementgeneral() :
 #sélectionne tout
 	bpy.ops.object.select_grouped(type='TYPE')
-	mat=couleurcarb()
-#sert de conteur pour créer nbr objet
-	nbr = 0
+#création couleur 
+	carb = couleurcarb()
+	azote = couleurazote()
+	oxy = couleuroxy()
+	chlore = couleurchlore()
+	fluor = couleurfluor()
+	soufre = couleursoufre()
 #liste modele
-	listem = []
-#ajoute dans la liste les objets modele
+	listec = [carb]
+	listea = [azote]
+	listeo = [oxy]
+	listechl = [chlore]
+	listef = [fluor]
+	listes = [soufre]
+	liste = []
+#ajoute dans les liste les objets modele correspondant
 	for objet in bpy.context.selected_objects :
 		bpy.context.scene.objects.active = objet
-#on vérifie si le nom de l'objet contient Hydro , pour vérifier que c'est un hydrogène 
 		if 'Carb' in objet.name:
-			nbr=nbr+1
 			bpy.context.scene.objects.active = objet
-			listem.append(bpy.context.active_object)
+			listec.append(bpy.context.active_object)
+		if 'Azo' in objet.name :
+			bpy.context.scene.objects.active = objet
+			listea.append(bpy.context.active_object)
+		if 'Oxy' in objet.name :
+			bpy.context.scene.objects.active = objet
+			listeo.append(bpy.context.active_object)
+		if 'Chlo' in objet.name :
+			bpy.context.scene.objects.active = objet
+			listechl.append(bpy.context.active_object)
+		if 'Flu' in objet.name :
+			bpy.context.scene.objects.active = objet
+			listef.append(bpy.context.active_object)
+		if 'Souf' in objet.name :
+			bpy.context.scene.objects.active = objet
+			listes.append(bpy.context.active_object)
 #création des nbr objets
-	for k in range(0,nbr):
-		bpy.ops.mesh.primitive_uv_sphere_add()
-		obj=bpy.context.active_object
-#valeur absolue du scaling
-		x=listem[k].scale.x
-		y=listem[k].scale.y
-		z=listem[k].scale.z
-#modification scaling
-		obj.scale = [x,y,z]
-		scaling()
-#modification location
-		obj.location = [listem[k].location.x,listem[k].location.y,listem[k].location.z]
-#modification rotation
-		obj.rotation_euler = [listem[k].rotation_euler.x,listem[k].rotation_euler.y,listem[k].rotation_euler.z]
-#smooth de l'objet
-		bpy.ops.object.shade_smooth()
-#couleur de l'objet
-		setcouleur(bpy.context.object,mat)
-		obj.select = False
+	liste.append(listec)
+	liste.append(listea)
+	liste.append(listeo)
+	liste.append(listechl)
+	liste.append(listef)
+	liste.append(listes)
+	for i in range(0,len(liste)):
+		for j in range(1,len(liste[i])):
+			bpy.ops.mesh.primitive_uv_sphere_add()
+			obj=bpy.context.active_object
+			x=liste[i][j].scale.x
+			y=liste[i][j].scale.y
+			z=liste[i][j].scale.z
+			obj.scale = [x,y,z]
+			scaling()
+			obj.location = [liste[i][j].location.x,liste[i][j].location.y,liste[i][j].location.z]
+			obj.rotation_euler = [liste[i][j].rotation_euler.x,liste[i][j].rotation_euler.y,liste[i][j].rotation_euler.z]
+			bpy.ops.object.shade_smooth()
+			setcouleur(bpy.context.object,liste[i][0])
+			obj.select = False
 #supression des modèles 
-	for n in range(0,nbr):
-		listem[n].select = True
-		bpy.ops.object.delete(use_global=False)		
+	for k in range(0,len(liste)):
+		for n in range(1, len(liste[k])) :
+			liste[k][n].select = True
+			bpy.ops.object.delete(use_global=False)		
 	
+#Fonction effectuant le travail de remise des normals 
 def scaling() :
 	if bpy.context.active_object.scale.y < 0 :
 		bpy.ops.object.transform_apply(location=False , rotation=False , scale=True)
@@ -160,13 +252,11 @@ def scaling() :
 		bpy.ops.mesh.normals_make_consistent(inside=False)
 		bpy.ops.object.mode_set(mode='OBJECT')		
 		
-		
-		
-
+#Fonction général effectuant le travaille , main 
 def optimisation():
 	bpy.ops.object.select_grouped(type='TYPE')
-	bpy.ops.object.parent_clear(type='CLEAR_KEEP_TRANSFORME')
+	bpy.ops.object.parent_clear(type='CLEAR_KEEP_TRANSFORM')
+	changementgeneral()
 	changementliaisons()
 	changementhydro()
-	changementcarbon()
 	
