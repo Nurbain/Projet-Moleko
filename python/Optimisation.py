@@ -363,12 +363,46 @@ def changementvalence(liste):
 		bpy.ops.object.delete(use_global=False)
 	model.select=True
 	bpy.ops.object.delete(use_global=False)
-	
 
+def origin():
+	bpy.ops.object.select_grouped(type='TYPE')
+	liste=[]
+	for objet in bpy.context.selected_objects :
+		bpy.context.scene.objects.active = objet
+		liste.append(objet)
+	for k in range(0,len(liste)) :
+		if 'Carb' in liste[k].name:
+			bpy.ops.object.select_all(action='DESELECT')
+			liste[k].select= True
+			bpy.ops.object.origin_set(type='ORIGIN_CENTER_OF_MASS')
+		if 'Azo' in liste[k].name :
+			bpy.ops.object.select_all(action='DESELECT')
+			liste[k].select= True
+			bpy.ops.object.origin_set(type='ORIGIN_CENTER_OF_MASS')
+		if 'Oxy' in liste[k].name :
+			bpy.ops.object.select_all(action='DESELECT')
+			liste[k].select= True
+			bpy.ops.object.origin_set(type='ORIGIN_CENTER_OF_MASS')
+		if 'Chlo' in liste[k].name :
+			bpy.ops.object.select_all(action='DESELECT')
+			liste[k].select= True
+			bpy.ops.object.origin_set(type='ORIGIN_CENTER_OF_MASS')
+		if 'Flu' in liste[k].name :
+			bpy.ops.object.select_all(action='DESELECT')
+			liste[k].select= True
+			bpy.ops.object.origin_set(type='ORIGIN_CENTER_OF_MASS')
+		if 'Souf' in liste[k].name :
+			bpy.ops.object.select_all(action='DESELECT')
+			liste[k].select= True
+			bpy.ops.object.origin_set(type='ORIGIN_CENTER_OF_MASS')
+		
+		
 #Fonction général effectuant le travaille , main 
 def optimisation():
 	model()
 	liste=matvalence()
+	bpy.ops.object.parent_clear(type='CLEAR_KEEP_TRANSFORM')
+	origin()
 	bpy.ops.object.select_grouped(type='TYPE')
 	bpy.ops.object.parent_clear(type='CLEAR_KEEP_TRANSFORM')
 	changementvalence(liste)
@@ -402,7 +436,7 @@ def matvalence():
 			if 'Oxy' in objet.name :
 				bpy.context.scene.objects.active = objet
 				listeo.append(bpy.context.active_object.children)
-			if 'Chlo' in objet.name :
+			if 'Chlore' in objet.name :
 				bpy.context.scene.objects.active = objet
 				listechl.append(bpy.context.active_object.children)
 			if 'Flu' in objet.name :
