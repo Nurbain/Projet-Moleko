@@ -87,6 +87,18 @@ def couleursoufre () :
 	mat.ambient = 1
 	return mat
 
+def couleurdouble() :
+	mat = bpy.data.materials.new('DoubleLiaison')
+	mat.diffuse_color = (0.246,0.246,0.246)
+	mat.diffuse_shader = 'LAMBERT' 
+	mat.diffuse_intensity = 1.0
+	mat.specular_color = (1,1,1)
+	mat.specular_shader = 'COOKTORR'
+	mat.specular_intensity = 0.032
+	mat.ambient = 1
+	return mat
+
+
 #Met la couleur
 def setcouleur(obj,mat):
 	ob = obj.data
@@ -275,6 +287,7 @@ def changementvalence(liste):
 	chlore = couleurchlore()
 	fluor = couleurfluor()
 	soufre = couleursoufre()
+	double = couleurdouble()
 	bpy.ops.object.select_grouped(type='TYPE')
 #liste modele
 	listev = []
@@ -290,6 +303,9 @@ def changementvalence(liste):
 			bpy.context.scene.objects.active = objet
 			model = bpy.context.active_object
 			bpy.ops.object.material_slot_remove()
+		elif 'Double' in objet.name:
+			bpy.context.scene.objects.active = objet
+			setcouleur(bpy.context.object,double)
 #création des nbr objets
 	bpy.ops.object.select_all(action='DESELECT')
 	bpy.context.scene.objects.active = model
