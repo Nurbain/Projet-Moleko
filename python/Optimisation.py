@@ -90,6 +90,8 @@ def couleursoufre () :
 #Met la couleur
 def setcouleur(obj,mat):
 	ob = obj.data
+	for k in range(0,len(bpy.context.object.data.materials)):
+		bpy.ops.object.material_slot_remove()
 	ob.materials.append(mat)
 
 #Change les hydrogènes
@@ -99,7 +101,6 @@ def changementhydro():
 	bpy.ops.object.select_grouped(type='TYPE')
 	mat=couleurhydro()
 #sert de conteur pour créer nbr objet
-	nbr = 0
 #liste modele
 	listem = []
 #ajoute dans la liste les objets modele
@@ -107,11 +108,10 @@ def changementhydro():
 		bpy.context.scene.objects.active = objet
 #on vérifie si le nom de l'objet contient Hydro , pour vérifier que c'est un hydrogène 
 		if 'Hydro' in objet.name:
-			nbr=nbr+1
 			bpy.context.scene.objects.active = objet
 			listem.append(bpy.context.active_object)
 #création des nbr objets
-	for k in range(0,nbr):
+	for k in range(0,len(listem)):
 		bpy.ops.mesh.primitive_uv_sphere_add()
 		obj=bpy.context.active_object
 #valeur absolue du scaling
@@ -130,7 +130,7 @@ def changementhydro():
 		setcouleur(bpy.context.object,mat)
 		obj.select = False
 #supression des modèles 
-	for n in range(0,nbr):
+	for n in range(0,len(listem)):
 		listem[n].select = True
 		bpy.ops.object.delete(use_global=False)
 
@@ -253,8 +253,25 @@ def scaling() :
 		bpy.ops.object.mode_set(mode='OBJECT')		
 
 
-def changementvalence():
+def recherche(liste,valence) :
+
+	r=""
+	for k in range(0,len(liste)):
+		for l in range(1,len(liste[k])):
+			for n in range(0,len(liste[k][l])):
+				if (valence==liste[k][l][n].name):
+					r=liste[k][0].name
+	return r
+
+	
+def changementvalence(liste):
 #sélectionne tout
+	carb = couleurcarb()
+	azote = couleurazote()
+	oxy = couleuroxy()
+	chlore = couleurchlore()
+	fluor = couleurfluor()
+	soufre = couleursoufre()
 	bpy.ops.object.select_grouped(type='TYPE')
 #liste modele
 	listev = []
@@ -266,9 +283,10 @@ def changementvalence():
 		if 'Valence' in objet.name:
 			bpy.context.scene.objects.active = objet
 			listev.append(bpy.context.active_object)
-		if 'Model' in objet.name:
+		elif 'Model' in objet.name:
 			bpy.context.scene.objects.active = objet
 			model = bpy.context.active_object
+			bpy.ops.object.material_slot_remove()
 #création des nbr objets
 	bpy.ops.object.select_all(action='DESELECT')
 	bpy.context.scene.objects.active = model
@@ -281,15 +299,27 @@ def changementvalence():
 		x=listev[k].scale.x
 		y=listev[k].scale.y
 		z=listev[k].scale.z
-#modification scaling
+#modification scalingobj.
 		obj.scale = [x,z,y]
-		print(obj.name)
 #modification location
 		obj.location = [listev[k].location.x,listev[k].location.y,listev[k].location.z]
 #modification rotation, le 1.5708 rad correspond a 90° 
 		obj.rotation_euler = [listev[k].rotation_euler.x+1.5708,listev[k].rotation_euler.y,listev[k].rotation_euler.z]
 #smooth de l'objet
 		bpy.ops.object.shade_smooth()
+		r =recherche(liste,listev[k].name)
+		if (r in "Carbon") :
+			setcouleur(bpy.context.object,carb)
+		elif (r in "Azote") :
+			setcouleur(bpy.context.object,azote)
+		elif (r in "Oxy") :
+			setcouleur(bpy.context.object,oxy)
+		elif (r in "Chlore") :
+			setcouleur(bpy.context.object,chlore)
+		elif (r in "Fluor") :
+			setcouleur(bpy.context.object,fluor)
+		elif (r in "Soufre") :
+			setcouleur(bpy.context.object,soufre)
 #couleur de l'objet
 #supression des modèles 
 	for l in range(0,len(listem)) :
@@ -302,13 +332,59 @@ def changementvalence():
 		listev[n].select = True
 		bpy.ops.object.delete(use_global=False)
 
-		
+	
+
 #Fonction général effectuant le travaille , main 
 def optimisation():
+	liste=matvalence()
 	bpy.ops.object.select_grouped(type='TYPE')
 	bpy.ops.object.parent_clear(type='CLEAR_KEEP_TRANSFORM')
+	changementvalence(liste)
 	changementgeneral()
 	changementliaisons()
 	changementhydro()
-	changementvalence()
 
+def matvalence():
+	bpy.ops.object.select_grouped(type='TYPE')
+	carb = couleurcarb()
+	azote = couleurazote()
+	oxy = couleuroxy()
+	chlore = couleurchlore()
+	fluor = couleurfluor()
+	soufre = couleursoufre()
+	listec = [carb]
+	listea = [azote]
+	listeo = [oxy]
+	listechl = [chlore]
+	listef = [fluor]
+	listes = [soufre]
+	liste = []
+	for objet in bpy.context.selected_objects :
+			bpy.context.scene.objects.active = objet
+			if 'Carb' in objet.name:
+				bpy.context.scene.objects.active = objet
+				listec.append(bpy.context.active_object.children)
+			if 'Azo' in objet.name :
+				bpy.context.scene.objects.active = objet
+				listea.append(bpy.context.active_object.children)
+			if 'Oxy' in objet.name :
+				bpy.context.scene.objects.active = objet
+				listeo.append(bpy.context.active_object.children)
+			if 'Chlo' in objet.name :
+				bpy.context.scene.objects.active = objet
+				listechl.append(bpy.context.active_object.children)
+			if 'Flu' in objet.name :
+				bpy.context.scene.objects.active = objet
+				listef.append(bpy.context.active_object.children)
+			if 'Souf' in objet.name :
+				bpy.context.scene.objects.active = objet
+				listes.append(bpy.context.active_object.children)
+	liste.append(listec)
+	liste.append(listea)
+	liste.append(listeo)
+	liste.append(listechl)
+	liste.append(listef)
+	liste.append(listes)
+	return liste
+	
+optimisation()
