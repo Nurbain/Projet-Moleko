@@ -125,6 +125,7 @@ def changementhydro():
 #modification rotation
 		obj.rotation_euler = [listem[k].rotation_euler.x,listem[k].rotation_euler.y,listem[k].rotation_euler.z]
 #smooth de l'objet
+		obj.name = listem[k].name
 		bpy.ops.object.shade_smooth()
 #couleur de l'objet
 		setcouleur(bpy.context.object,mat)
@@ -166,6 +167,7 @@ def changementliaisons():
 #modification rotation
 		obj.rotation_euler = [listem[k].rotation_euler.x,listem[k].rotation_euler.y,listem[k].rotation_euler.z]
 #smooth de l'objet
+		obj.name = listem[k].name
 		bpy.ops.object.shade_smooth()
 #couleur de l'objet
 		setcouleur(bpy.context.object,mat)
@@ -233,6 +235,7 @@ def changementgeneral() :
 			scaling()
 			obj.location = [liste[i][j].location.x,liste[i][j].location.y,liste[i][j].location.z]
 			obj.rotation_euler = [liste[i][j].rotation_euler.x,liste[i][j].rotation_euler.y,liste[i][j].rotation_euler.z]
+			obj.name = liste[i][j].name
 			bpy.ops.object.shade_smooth()
 			setcouleur(bpy.context.object,liste[i][0])
 			obj.select = False
@@ -306,6 +309,7 @@ def changementvalence(liste):
 #modification rotation, le 1.5708 rad correspond a 90° 
 		obj.rotation_euler = [listev[k].rotation_euler.x+1.5708,listev[k].rotation_euler.y,listev[k].rotation_euler.z]
 #smooth de l'objet
+		obj.name = listev[k].name
 		bpy.ops.object.shade_smooth()
 		r =recherche(liste,listev[k].name)
 		if (r in "Carbon") :
