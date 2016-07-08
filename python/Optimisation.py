@@ -267,6 +267,16 @@ def scaling() :
 		bpy.ops.mesh.normals_make_consistent(inside=False)
 		bpy.ops.object.mode_set(mode='OBJECT')		
 
+def model() :
+	bpy.context.scene.cursor_location = (0.0, 0.0, 0.0)
+	bpy.ops.mesh.primitive_cylinder_add()
+	bpy.ops.object.modifier_add(type='BEVEL')
+	bpy.context.active_object.name="Model"
+	bpy.ops.object.mode_set(mode='EDIT')
+	bpy.ops.mesh.select_all(action = 'SELECT')
+	bpy.ops.transform.translate(value =(0,0,-1))
+	bpy.ops.object.mode_set(mode='OBJECT')
+		
 
 def recherche(liste,valence) :
 
@@ -319,11 +329,11 @@ def changementvalence(liste):
 		y=listev[k].scale.y
 		z=listev[k].scale.z
 #modification scalingobj.
-		obj.scale = [x,z,y]
+		obj.scale = [x,y,z]
 #modification location
 		obj.location = [listev[k].location.x,listev[k].location.y,listev[k].location.z]
 #modification rotation, le 1.5708 rad correspond a 90° 
-		obj.rotation_euler = [listev[k].rotation_euler.x+1.5708,listev[k].rotation_euler.y,listev[k].rotation_euler.z]
+		obj.rotation_euler = [listev[k].rotation_euler.x,listev[k].rotation_euler.y,listev[k].rotation_euler.z]
 #smooth de l'objet
 		obj.name = listev[k].name
 		bpy.ops.object.shade_smooth()
@@ -351,11 +361,13 @@ def changementvalence(liste):
 	for n in range(0,len(listev)):
 		listev[n].select = True
 		bpy.ops.object.delete(use_global=False)
-
+	model.select=True
+	bpy.ops.object.delete(use_global=False)
 	
 
 #Fonction général effectuant le travaille , main 
 def optimisation():
+	model()
 	liste=matvalence()
 	bpy.ops.object.select_grouped(type='TYPE')
 	bpy.ops.object.parent_clear(type='CLEAR_KEEP_TRANSFORM')
