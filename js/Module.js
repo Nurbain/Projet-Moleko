@@ -1,29 +1,4 @@
-<html>
-<head>
-		<title>Test WebGL</title>
-        <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-
-		<style> body {margin :0;} </style>
-</head>
-
-<body> 
-
-
-
-
-
-
-
-
-
-
-
-  <script src="js/three.min.js"></script>
-  <script src="js/ColladaLoader.js"></script>
-  <script src="js/OrbitControls.js"></script>
-  
-  <script>
-  var scene, camera, renderer;
+ var scene, camera, renderer;
 	init();
     animate();
 	
@@ -31,14 +6,14 @@
 
 	//Création de la scène 
       scene = new THREE.Scene();
-      var WIDTH = window.innerWidth,
-          HEIGHT = window.innerHeight;
+      var WIDTH = 870;
+          HEIGHT = 450;
 
       renderer = new THREE.WebGLRenderer({antialias:true});
-	  renderer.setClearColor(0xffffff );
+	  renderer.setClearColor(0x000000);
       renderer.setSize(WIDTH, HEIGHT);
 	  renderer.localClippingEnabled;
-      document.body.appendChild(renderer.domElement);
+      document.getElementById("module").appendChild(renderer.domElement);
 	  
 	//Création de la caméra 
       camera = new THREE.PerspectiveCamera(5, WIDTH / HEIGHT, 0.1, 10000);
@@ -47,8 +22,8 @@
 	 
 	//viewport
       window.addEventListener('resize', function() {
-        var WIDTH = window.innerWidth,
-            HEIGHT = window.innerHeight;
+        var WIDTH = 200;
+            HEIGHT = 200;
         renderer.setSize(WIDTH, HEIGHT);
         camera.aspect = WIDTH / HEIGHT;
         camera.updateProjectionMatrix();
@@ -95,7 +70,7 @@ scene.add( pointLightHelper4 );
 	
 	var loader = new THREE.ColladaLoader();
 	loader.options.convertUpAxis = true;
-	loader.load( '../models/acide.dae', function ( collada ) {
+	loader.load( 'models/acide.dae', function ( collada ) {
 
     var dae = collada.scene;
 
@@ -117,7 +92,3 @@ scene.add( pointLightHelper4 );
       renderer.render(scene, camera);
       controls.update();
     }
-</script>
-	
-</body> 
-</html>

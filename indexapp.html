@@ -5,6 +5,10 @@
 	<meta charset="utf-8">
 	<link rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'></link>
 	<link rel='stylesheet', href='css/asset.css'></link>
+	<script src="js/three.min.js"></script>
+	<script src="js/ColladaLoader.js"></script>
+	<script src="js/OrbitControls.js"></script>
+	
 </head>
 <body>
 	
@@ -38,8 +42,10 @@
 		<div id="Bdd" class="col-lg-3" >
 			<ul class="nav nav-list ulBdd">
 				<li class="nav-header"><h3>Recherche Modèle</h3></li>
-				<input type="search" value="text" placeholder="Nom molécule">
-				<li class="nav-header"><h3>Nouveau modèles ajouté </h3></li>
+				<input type="search"  placeholder="Nom molécule">
+				<li class="nav-header"><h3>Nouveaux modèles ajoutés </h3></li>
+				<li><a href="#">Model</a></li>
+				<li><a href="#">Model</a></li>
 				<li><a href="#">Model</a></li>
 				<li><a href="#">Model</a></li>
 				<li><a href="#">Model</a></li>
@@ -50,14 +56,14 @@
 		</div>
 		
 		<!-- Zone 3D -->
-		<div class="col-lg-6">
-				
+		<div id="module" class="col-lg-6">
 		</div>
 		
 		<!-- Descriptif molécule -->
 		<div id="Descriptif" class="col-lg-3">
 			<h2> Descriptif </h2>
-			<p> Valeur par Js depuis une Bdd</p>
+			<p> L’acétaldéhyde est un liquide incolore et irritant, très volatil, à odeur d’éther.
+Il est synthétisé par une enzyme* présente dans le foie et dans la rétine mais en plus faibles quantités. Il est l'un des agents responsables de la crise de foie. Le métabolisme de l'alcool (toutes boissons alcoolisées) dans le foie produit de l'acétaldéhyde (se référer aussi à l'éthanol). L'acétaldéhyde participe également à l'odeur des fruits mûrs.</p>
 			<a href="https://fr.wikipedia.org/wiki/Azote"><span class="glyphicon glyphicon-info-sign"></span></a>
 		</div>
 		
@@ -80,8 +86,10 @@
 				<li><span class="glyphicon glyphicon-tint ">Noir</span></li>
 			</div>
 	</div>
-		
 	
-				
+<script src="js/three.min.js"></script>
+<script src="js/ColladaLoader.js"></script>
+<script src="js/OrbitControls.js"></script>
+<script src="js/Module.js"></script>	
 </body>
 </html>
