@@ -1,0 +1,155 @@
+.row
+{
+	padding-left : 40px;
+	margin-right: -15px;
+	margin-left: -15px;
+}
+
+body
+{
+	padding-top : 20px
+}
+
+#Lunette
+{
+	position: absolute;
+    left: 1300px;
+    top: 3px;
+    z-index: 2;
+}
+
+/*Haut de page*/
+#HeaderLgn
+{
+	
+}
+
+#Logo{
+background-color: white ;
+}
+
+#degrade /*Degradé de la colonne de largeur 2*/
+{
+	background-image:linear-gradient(90deg,white,#CF331C);
+	color:white;
+}
+
+#hidden
+{
+	color:white;
+}
+
+#Navbar
+{
+	background-color:#CF331C;
+}
+
+ul.header li a
+{
+	text-align: center;
+	color : black ;
+	padding-right: 20px;
+	padding-left: 20px;
+}
+
+ul.header li a:hover
+{
+	background-color: #E2381F;
+	color : black;
+}
+
+.menu{
+    float:none;
+    display:inline-block;
+    vertical-align:bottom;
+    margin-right:-4px;
+}
+
+/*Base de donnée */
+
+#Bdd
+{
+	box-shadow: 5px 5px 10px #aaa;
+}
+ul.ulBdd li a
+{
+	color: white;
+}
+
+ul.ulBdd li a:hover
+{
+	background-color: #4D4D4D;
+}
+
+#Bdd
+{
+
+	Background-color : 	#292929;
+	border-radius:8px;
+	color : white;
+}
+
+input
+{
+	color : #292929;
+	
+}
+
+/* Descrpitif Molécule */
+
+#Descriptif
+{
+	padding-right : 40px;
+}
+
+#Descriptif h2
+{
+	background-color : #008C32;
+	color : white;
+	text-align : center;
+	box-shadow: 5px 5px 10px #aaa;
+	
+}
+
+#Descriptif p
+{
+	padding-left : 10px;
+	padding-right : 10px;
+	text-align : justify;
+	border-style : solid ;
+	border-bottom : none ;
+	border-top : none ;
+	border-color : #008C32;
+}
+
+
+#Descriptif span
+{
+	color : #008C32;
+}
+
+#Descriptif span:hover
+{
+	color : #292929;
+}
+
+/*Fond option */
+
+#Fond li
+{
+	display:block;
+	float:left;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  background-color : #00FF00 ;
+}
+
+
+
