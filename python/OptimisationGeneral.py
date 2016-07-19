@@ -1,6 +1,8 @@
 #Nathan Urbain
 #Optimisation automatique des molécules
 
+#Utilisation : Importation du model de Valence , Respecter les conventions de nommage donné par la doc , séléctionner un mesh , lancer la commande "Optimisation()"
+
 import bpy,bmesh
 
 #Couleur hydrogène et liasion simple 
@@ -87,6 +89,7 @@ def couleursoufre () :
 	mat.ambient = 1
 	return mat
 
+#Couleur DoubleLiaison
 def couleurdouble() :
 	mat = bpy.data.materials.new('DoubleLiaison')
 	mat.diffuse_color = (0.246,0.246,0.246)
@@ -99,7 +102,7 @@ def couleurdouble() :
 	return mat
 
 
-#Met la couleur
+#Met la couleur sur l'objet
 def setcouleur(obj,mat):
 	ob = obj.data
 	for k in range(0,len(bpy.context.object.data.materials)):
@@ -107,26 +110,24 @@ def setcouleur(obj,mat):
 	ob.materials.append(mat)
 
 #Change les hydrogènes
-
 def changementhydro():
-#sélectionne tout
+#sélectionne tout les objets
 	bpy.ops.object.select_grouped(type='TYPE')
 	mat=couleurhydro()
-#sert de conteur pour créer nbr objet
-#liste modele
+#liste Hydro
 	listem = []
-#ajoute dans la liste les objets modele
+#ajoute dans la liste les atomes d'hydrogène
 	for objet in bpy.context.selected_objects :
 		bpy.context.scene.objects.active = objet
 #on vérifie si le nom de l'objet contient Hydro , pour vérifier que c'est un hydrogène 
 		if 'Hydro' in objet.name:
 			bpy.context.scene.objects.active = objet
 			listem.append(bpy.context.active_object)
-#création des nbr objets
+#création des nouveaux atomes
 	for k in range(0,len(listem)):
 		bpy.ops.mesh.primitive_uv_sphere_add()
 		obj=bpy.context.active_object
-#valeur absolue du scaling
+#valeur absolue du scaling (eviter les bugs d'affichage)
 		x=abs(listem[k].scale.x)
 		y=abs(listem[k].scale.y)
 		z=abs(listem[k].scale.z)
@@ -142,34 +143,31 @@ def changementhydro():
 #couleur de l'objet
 		setcouleur(bpy.context.object,mat)
 		obj.select = False
-#supression des modèles 
+#supression des vieux hydrogènes
 	for n in range(0,len(listem)):
 		listem[n].select = True
 		bpy.ops.object.delete(use_global=False)
 
 #Change les Lisaions simples	
 def changementliaisons():
-#sélectionne tout
+#sélectionne tout les meshs
 	bpy.ops.object.select_grouped(type='TYPE')
 	mat=couleurhydro()
-#sert de conteur pour créer nbr objet
-	nbr = 0
-#liste modele
+#liste des vielles liaisons
 	listem = []
-#ajoute dans la liste les objets modele
+#ajoute dans la liste les liaisons modeles
 	for objet in bpy.context.selected_objects :
 		bpy.context.scene.objects.active = objet
-#on vérifie si le nom de l'objet contient Hydro , pour vérifier que c'est un hydrogène 
+#on vérifie si le nom de l'objet contient Simple , pour vérifier que c'est une liaison simple
 		if 'Simple' in objet.name:
-			nbr=nbr+1
 			bpy.context.scene.objects.active = objet
 			listem.append(bpy.context.active_object)
-#création des nbr objets
-	for k in range(0,nbr):
+#création des nouvelles liaisons
+	for k in range(0,len(listem)):
+#centrage du curseur
 		bpy.context.scene.cursor_location = (0.0, 0.0, 0.0)
 		bpy.ops.mesh.primitive_cylinder_add()
 		bpy.context.scene.cursor_location = (0,0,1)
-#mode edit
 		bpy.ops.object.origin_set(type='ORIGIN_CURSOR')
 #modification scaling
 		obj=bpy.context.active_object
@@ -184,13 +182,13 @@ def changementliaisons():
 #couleur de l'objet
 		setcouleur(bpy.context.object,mat)
 		obj.select = False
-#supression des modèles 
-	for n in range(0,nbr):
+#supression des vielles liaisons 
+	for n in range(0,len(listem)):
 		listem[n].select = True
 		bpy.ops.object.delete(use_global=False)
 
-		
-def changementgeneral() :
+#Change les atomes 		
+def changementatome() :
 #sélectionne tout
 	bpy.ops.object.select_grouped(type='TYPE')
 #création couleur 
@@ -200,7 +198,7 @@ def changementgeneral() :
 	chlore = couleurchlore()
 	fluor = couleurfluor()
 	soufre = couleursoufre()
-#liste modele
+#liste atome
 	listec = [carb]
 	listea = [azote]
 	listeo = [oxy]
@@ -208,7 +206,7 @@ def changementgeneral() :
 	listef = [fluor]
 	listes = [soufre]
 	liste = []
-#ajoute dans les liste les objets modele correspondant
+#ajoute dans les liste correspondantes les atomes a changer en fonction de leur nom
 	for objet in bpy.context.selected_objects :
 		bpy.context.scene.objects.active = objet
 		if 'Carb' in objet.name:
@@ -229,13 +227,14 @@ def changementgeneral() :
 		if 'Souf' in objet.name :
 			bpy.context.scene.objects.active = objet
 			listes.append(bpy.context.active_object)
-#création des nbr objets
+#création de la liste général
 	liste.append(listec)
 	liste.append(listea)
 	liste.append(listeo)
 	liste.append(listechl)
 	liste.append(listef)
 	liste.append(listes)
+#Création des nouveaux atomes
 	for i in range(0,len(liste)):
 		for j in range(1,len(liste[i])):
 			bpy.ops.mesh.primitive_uv_sphere_add()
@@ -244,6 +243,7 @@ def changementgeneral() :
 			y=liste[i][j].scale.y
 			z=liste[i][j].scale.z
 			obj.scale = [x,y,z]
+#Verification que le scaling est positif
 			scaling()
 			obj.location = [liste[i][j].location.x,liste[i][j].location.y,liste[i][j].location.z]
 			obj.rotation_euler = [liste[i][j].rotation_euler.x,liste[i][j].rotation_euler.y,liste[i][j].rotation_euler.z]
@@ -251,22 +251,24 @@ def changementgeneral() :
 			bpy.ops.object.shade_smooth()
 			setcouleur(bpy.context.object,liste[i][0])
 			obj.select = False
-#supression des modèles 
+#supression des anciens atomes 
 	for k in range(0,len(liste)):
 		for n in range(1, len(liste[k])) :
 			liste[k][n].select = True
 			bpy.ops.object.delete(use_global=False)		
 	
-#Fonction effectuant le travail de remise des normals 
+#Fonction effectuant la verification du scaling
 def scaling() :
 	if bpy.context.active_object.scale.y < 0 :
 		bpy.ops.object.transform_apply(location=False , rotation=False , scale=True)
 		obj=bpy.context.active_object
 		bpy.ops.object.mode_set(mode='EDIT')
+#Selection des edges 
 		bpy.ops.mesh.select_all(action = 'SELECT')
 		bpy.ops.mesh.normals_make_consistent(inside=False)
 		bpy.ops.object.mode_set(mode='OBJECT')		
 
+#Création du nouveau model de valence
 def model() :
 	bpy.context.scene.cursor_location = (0.0, 0.0, 0.0)
 	bpy.ops.mesh.primitive_cylinder_add()
@@ -277,7 +279,7 @@ def model() :
 	bpy.ops.transform.translate(value =(0,0,-1))
 	bpy.ops.object.mode_set(mode='OBJECT')
 		
-
+#Fonction de recherche pour trouver si la valence donné fait parti de la liste donné 
 def recherche(liste,valence) :
 
 	r=""
@@ -288,7 +290,7 @@ def recherche(liste,valence) :
 					r=liste[k][0].name
 	return r
 
-	
+#Changement des valences depuis les anciennes et le model crée par model()	
 def changementvalence(liste):
 #sélectionne tout
 	carb = couleurcarb()
@@ -299,7 +301,7 @@ def changementvalence(liste):
 	soufre = couleursoufre()
 	double = couleurdouble()
 	bpy.ops.object.select_grouped(type='TYPE')
-#liste modele
+#liste valence
 	listev = []
 	listem = []
 #ajoute dans la liste les objets modele
@@ -316,10 +318,12 @@ def changementvalence(liste):
 		elif 'Double' in objet.name:
 			bpy.context.scene.objects.active = objet
 			setcouleur(bpy.context.object,double)
-#création des nbr objets
+			scaling()
 	bpy.ops.object.select_all(action='DESELECT')
 	bpy.context.scene.objects.active = model
+#selection 
 	model.select=True
+#création des nouvelles valences depuis la valence model
 	for k in range(0,len(listev)):
 		bpy.ops.object.duplicate_move()
 		obj=bpy.context.active_object
@@ -328,7 +332,7 @@ def changementvalence(liste):
 		x=listev[k].scale.x
 		y=listev[k].scale.y
 		z=listev[k].scale.z
-#modification scalingobj.
+#modification scaling
 		obj.scale = [x,y,z]
 #modification location
 		obj.location = [listev[k].location.x,listev[k].location.y,listev[k].location.z]
@@ -337,6 +341,7 @@ def changementvalence(liste):
 #smooth de l'objet
 		obj.name = listev[k].name
 		bpy.ops.object.shade_smooth()
+#Recherche de la valence dans la liste de sauvgarde, et attribut son materiaux
 		r =recherche(liste,listev[k].name)
 		if (r in "Carbon") :
 			setcouleur(bpy.context.object,carb)
@@ -350,8 +355,7 @@ def changementvalence(liste):
 			setcouleur(bpy.context.object,fluor)
 		elif (r in "Soufre") :
 			setcouleur(bpy.context.object,soufre)
-#couleur de l'objet
-#supression des modèles 
+#supression des valences modèles 
 	for l in range(0,len(listem)) :
 		bpy.ops.object.select_all(action='DESELECT')
 		listem[l].select=True
@@ -364,6 +368,8 @@ def changementvalence(liste):
 	model.select=True
 	bpy.ops.object.delete(use_global=False)
 
+	
+#Modifie l'origine des atomes
 def origin():
 	bpy.ops.object.select_grouped(type='TYPE')
 	liste=[]
@@ -396,20 +402,7 @@ def origin():
 			liste[k].select= True
 			bpy.ops.object.origin_set(type='ORIGIN_CENTER_OF_MASS')
 		
-		
-#Fonction général effectuant le travaille , main 
-def optimisation():
-	model()
-	liste=matvalence()
-	bpy.ops.object.parent_clear(type='CLEAR_KEEP_TRANSFORM')
-	origin()
-	bpy.ops.object.select_grouped(type='TYPE')
-	bpy.ops.object.parent_clear(type='CLEAR_KEEP_TRANSFORM')
-	changementvalence(liste)
-	changementgeneral()
-	changementliaisons()
-	changementhydro()
-
+#Sauvgarde des valences pour stocker leur appartenance et leurs materiaux
 def matvalence():
 	bpy.ops.object.select_grouped(type='TYPE')
 	carb = couleurcarb()
@@ -452,5 +445,18 @@ def matvalence():
 	liste.append(listef)
 	liste.append(listes)
 	return liste
-	
+
+#Fonction Main , a lancer 
+def optimisation():
+	model()
+	liste=matvalence()
+	bpy.ops.object.parent_clear(type='CLEAR_KEEP_TRANSFORM')
+	origin()
+	bpy.ops.object.select_grouped(type='TYPE')
+	bpy.ops.object.parent_clear(type='CLEAR_KEEP_TRANSFORM')
+	changementvalence(liste)
+	changementatome()
+	changementliaisons()
+	changementhydro()
+
 optimisation()

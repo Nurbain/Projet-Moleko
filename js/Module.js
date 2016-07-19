@@ -6,7 +6,7 @@
 
 	//Création de la scène 
       scene = new THREE.Scene();
-      var WIDTH = 870;
+      var WIDTH = 831;
           HEIGHT = 450;
 
       renderer = new THREE.WebGLRenderer({antialias:true});

@@ -1,15 +1,11 @@
-#L'objet actif prend les caractéristiques de l'objet séléctionné avant 
-#donc l'objet actif prend la place de l'ancien ( en gros )
+#Nathan URBAIN
+#Script changeant les hydrogènes et liaisons de la molécules 
 
-#UTILISATION :
-#sélectionner les hydrogènes a changer, lancer la commande "optimisation()" dans la console python
-
-#ne pas oublier de run toute les fonctions
-#le script marche seuleument quand les objets possèdent les nom hydrogènes/liaisonSimples
+#Utilisation : Selection d'un mesh , puis lancement de script dans la console python, en appelant la fonction "optimisation"
 
 import bpy
 
-#création de la couleur d'hydrogène
+#Couleur d'hydrogène
 def couleurhydro() :
 	mat = bpy.data.materials.new('blanc')
 	mat.diffuse_color = (1,1,1)
@@ -21,25 +17,12 @@ def couleurhydro() :
 	mat.ambient = 1
 	return mat
 
-#création de la couleur liaison	
-def couleurliaison() :
-	mat = bpy.data.materials.new('blanc')
-	mat.diffuse_color = (1,1,1)
-	mat.diffuse_shader = 'LAMBERT' 
-	mat.diffuse_intensity = 1.0
-	mat.specular_color = (1,1,1)
-	mat.specular_shader = 'COOKTORR'
-	mat.specular_intensity = 0.032
-	mat.ambient = 1
-	return mat
-	
-
-#sous-fonction pour set la couleur 
+#Ajout de la couleur a l'objet
 def setcouleur(obj,mat):
 	ob = obj.data
 	ob.materials.append(mat)
 
-
+#Changement hydrogène
 def changementhydro():
 #sélectionne tout
 	bpy.ops.object.select_grouped(type='TYPE')
@@ -84,7 +67,7 @@ def changementhydro():
 def changementliaisons():
 #sélectionne tout
 	bpy.ops.object.select_grouped(type='TYPE')
-	mat=couleurliaison()
+	mat=couleurhydro()
 #sert de conteur pour créer nbr objet
 	nbr = 0
 #liste modele
@@ -121,7 +104,7 @@ def changementliaisons():
 		listem[n].select = True
 		bpy.ops.object.delete(use_global=False)
 
-		
+#Fonction lancant les 2 scripts précédents
 def optimisation():
 	changementliaisons()
 	changementhydro()

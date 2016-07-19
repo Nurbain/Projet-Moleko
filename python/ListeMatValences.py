@@ -1,18 +1,30 @@
+#Nathan URBAIN
+#Script listant et sauvgardant les valences d'une molécule pour changement de modèle dans l'optimisation general
+
+#Utilisation : Selection d'un mesh , puis lancement de script dans la console python
+
+import bpy
+
 def matvalence():
+#Séléction de tout les Meshs
 	bpy.ops.object.select_grouped(type='TYPE')
+#Couleurs des valences (présent dans le script d'optimisation)
 	carb = couleurcarb()
 	azote = couleurazote()
 	oxy = couleuroxy()
 	chlore = couleurchlore()
 	fluor = couleurfluor()
 	soufre = couleursoufre()
+#Liste pour la sauvgarde des valences, associé aux atomes correspondant 
 	listec = [carb]
 	listea = [azote]
 	listeo = [oxy]
 	listechl = [chlore]
 	listef = [fluor]
 	listes = [soufre]
+#Liste Générale 
 	liste = []
+#Parcours des atomes, et sauvgarde des valences dans la bonne liste
 	for objet in bpy.context.selected_objects :
 			bpy.context.scene.objects.active = objet
 			if 'Carb' in objet.name:
@@ -39,4 +51,5 @@ def matvalence():
 	liste.append(listechl)
 	liste.append(listef)
 	liste.append(listes)
+#Liste générale des valences 
 	return liste
