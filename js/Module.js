@@ -101,5 +101,5 @@ function chgmodel(name)
 	});
 }
 
-init("acide.dae",0xBDBDBD)
+init("Scatol.dae",0xBDBDBD)
 animate()
