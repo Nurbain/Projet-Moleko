@@ -81,6 +81,15 @@ ul.ulBdd li a:hover
 	background-color: #4D4D4D;
 }
 
+ul.ulBdd li a:active
+{
+	background-color: #4D4D4D;
+}
+
+ul.ulBdd li a:visited
+{
+	background-color: #4D4D4D;
+}
 #Bdd
 {
 
@@ -95,9 +104,34 @@ input
 	
 }
 
+.fixed
+{
+	height : 450px;
+	overflow : auto;
+}
 /*3D*/
 
+.button3d
+{
+	border-radius:7px;
+	background-color: #292929;
+	color : white;
+	padding-top : 4px;
+	padding-bottom : 4px;
+	border-style : solid ;
+	box-shadow: 3px 3px 7px #aaa;
+}
 
+.colorie
+{
+	border-radius:7px;
+	background-color: #292929;
+	color : white;
+	padding-top : 4px;
+	padding-bottom : 4px;
+	border-style : solid ;
+	box-shadow: 3px 3px 7px #aaa;
+}
 /* Descrpitif Molécule */
 
 #Descriptif
@@ -123,6 +157,7 @@ input
 	border-bottom : none ;
 	border-top : none ;
 	border-color : #008C32;
+	height : 350px;
 }
 
 

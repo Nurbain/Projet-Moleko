@@ -5,10 +5,7 @@
 	<meta charset="utf-8">
 	<link rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'></link>
 	<link rel='stylesheet', href='css/asset.css'></link>
-	<script src="js/three.min.js"></script>
-	<script src="js/ColladaLoader.js"></script>
-	<script src="js/OrbitControls.js"></script>
-	
+
 </head>
 <body>
 	
@@ -39,11 +36,14 @@
 	<!-- Row centrale -->
 	<div class="row" >
 		<!-- Menu Base de donné -->
-		<div id="Bdd" class="col-lg-3" >
+		<div id="Bdd" class="col-lg-3 fixed" >
 			<ul class="nav nav-list ulBdd">
 				<li class="nav-header"><h3>Recherche Modèle</h3></li>
 				<input type="search"  placeholder="Nom molécule">
+				<button type="submit" class="btn-default"><span class="glyphicon glyphicon-search"></span></button>
 				<li class="nav-header"><h3>Nouveaux modèles ajoutés </h3></li>
+				<li><a href="#" onclick="chgmodel('Azote.dae')">Azote</a></li>
+				<li><a href="#">Model</a></li>
 				<li><a href="#">Model</a></li>
 				<li><a href="#">Model</a></li>
 				<li><a href="#">Model</a></li>
@@ -56,14 +56,13 @@
 		</div>
 		
 		<!-- Zone 3D -->
-		<div id="module" class="col-lg-6">
+		<div id="module" class="col-lg-6 ">
 		</div>
 		
 		<!-- Descriptif molécule -->
-		<div id="Descriptif" class="col-lg-3">
+		<div id="Descriptif" class="col-lg-3 ">
 			<h2> Descriptif </h2>
-			<p> L’acétaldéhyde est un liquide incolore et irritant, très volatil, à odeur d’éther.
-Il est synthétisé par une enzyme* présente dans le foie et dans la rétine mais en plus faibles quantités. Il est l'un des agents responsables de la crise de foie. Le métabolisme de l'alcool (toutes boissons alcoolisées) dans le foie produit de l'acétaldéhyde (se référer aussi à l'éthanol). L'acétaldéhyde participe également à l'odeur des fruits mûrs.</p>
+			<p> <p>
 			<a href="https://fr.wikipedia.org/wiki/Azote"><span class="glyphicon glyphicon-info-sign"></span></a>
 		</div>
 		
@@ -74,22 +73,23 @@ Il est synthétisé par une enzyme* présente dans le foie et dans la rétine ma
 	<div class="row">
 	
 	<!-- Qrcode de telechargement appli -->
-		<div class="col-lg-2">
-			<p>Télécharger appli</p>
+		<div class="col-lg-3">
+			<a href="#"><img id="Android" src='image/Android.png' alt="Android icon" height="70" width="200"/></a>
+			<a href="#"><img id="Apple" src='image/Apple.png' alt="Apple icon" height="55" width="192"/></a>
 		</div>
 	
 	<!-- Changement fond module 3D -->
-		<div id="Fond" class="col-lg-3 col-md-offset-4">
+		<div id="Fond" class="col-lg-3 col-md-offset-3">
 			<div class ="nav">
-				<li><span class="glyphicon glyphicon-tint ">Blanc</span></li>
-				<li><span class="glyphicon glyphicon-tint ">Gris</span></li>
-				<li><span class="glyphicon glyphicon-tint ">Noir</span></li>
+				<li><button class="btn-default button3d" onclick="renderer.setClearColor(0xE8E8E8)"> <span class="glyphicon glyphicon-tint">Blanc</span></button></li>
+				<li><button class="btn-default button3d" onclick="renderer.setClearColor(0xBDBDBD)"><span class="glyphicon glyphicon-tint " >Gris</span></button></li>
+				<li><button class="btn-default button3d" onclick="renderer.setClearColor(0x292929)"><span class="glyphicon glyphicon-tint " >Noir</span></button></li>
+				<li><input type="color" id="fond" placeholder="Couleur html de fond" class="colorie"><button class="btn-default button3d" onclick="fond()"><span class="glyphicon glyphicon-check"></span></button></li>
 			</div>
 	</div>
-	
-<script src="js/three.min.js"></script>
-<script src="js/ColladaLoader.js"></script>
-<script src="js/OrbitControls.js"></script>
-<script src="js/Module.js"></script>	
+	<script src="js/three.min.js"></script>
+	<script src="js/ColladaLoader.js"></script>
+	<script src="js/OrbitControls.js"></script>
+	<script src="js/Module.js"></script>	
 </body>
 </html>
