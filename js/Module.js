@@ -4,7 +4,7 @@ var scene , renderer , camera, dae
 
 	//Création de la scène 
       scene = new THREE.Scene();
-      var WIDTH = 831;
+      var WIDTH = 825;
       var HEIGHT = 450;
 
       renderer = new THREE.WebGLRenderer({antialias:true});
@@ -15,7 +15,7 @@ var scene , renderer , camera, dae
 	  
 	//Création de la caméra 
       camera = new THREE.PerspectiveCamera(5, WIDTH / HEIGHT, 0.1, 10000);
-      camera.position.set(50,150,100);
+      camera.position.set(40,50,80);
       scene.add(camera);
 	 
 	//viewport

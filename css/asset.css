@@ -109,16 +109,39 @@ input
 	height : 450px;
 	overflow : auto;
 }
+
+.search
+{
+	border-radius:8px;
+	background-color : white;
+	border:none;
+	padding-top : 3px;
+	padding-bottom : 3px;
+	padding-left : 3px;
+	padding-right : 3px;
+}
+
+.search:hover
+{
+	background-color: #4D4D4D;
+	color : white;
+}
+
+.searchmol
+{
+	border-radius:5px;
+	border : none
+}
 /*3D*/
 
 .button3d
 {
+	border : none;
 	border-radius:7px;
 	background-color: #292929;
 	color : white;
 	padding-top : 4px;
 	padding-bottom : 4px;
-	border-style : solid ;
 	box-shadow: 3px 3px 7px #aaa;
 }
 
@@ -175,6 +198,7 @@ input
 
 #Fond li
 {
+	border:none;
 	display:block;
 	float:left;
 	padding-left: 10px;
@@ -182,6 +206,7 @@ input
 }
 
 .container {
+	border:none;
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;

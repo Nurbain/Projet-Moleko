@@ -39,10 +39,10 @@
 		<div id="Bdd" class="col-lg-3 fixed" >
 			<ul class="nav nav-list ulBdd">
 				<li class="nav-header"><h3>Recherche Modèle</h3></li>
-				<input type="search"  placeholder="Nom molécule">
-				<button type="submit" class="btn-default"><span class="glyphicon glyphicon-search"></span></button>
+				<input type="search"  placeholder="Nom molécule" class="searchmol">
+				<button type="submit" class="btn-default search"><span class="glyphicon glyphicon-search"></span></button>
 				<li class="nav-header"><h3>Nouveaux modèles ajoutés </h3></li>
-		<!-- Gérer les noms avec une base de donné SQL , nom = fichier.dae -->
+		<!-- Gérer les noms avec une base de donné SQL , nom = fichier.dae + json avec descriptif-->
 				<li><a href="#" onclick="chgmodel('Scatol.dae')">Scatol</a></li>
 				<li><a href="#" onclick="chgmodel('Pinene.dae')">Pinene</a></li>
 				<li><a href="#" onclick="chgmodel('Menthol.dae')">Menthol</a></li>
@@ -74,13 +74,13 @@
 	<div class="row">
 	
 	<!-- Qrcode de telechargement appli -->
-		<div class="col-lg-3">
+		<div class="col-lg-5">
 			<a href="#"><img id="Android" src='image/Android.png' alt="Android icon" height="70" width="200"/></a>
 			<a href="#"><img id="Apple" src='image/Apple.png' alt="Apple icon" height="55" width="192"/></a>
 		</div>
 	
 	<!-- Changement fond module 3D -->
-		<div id="Fond" class="col-lg-3 col-md-offset-3">
+		<div id="Fond" class="col-lg-3 col-md-offset-1">
 			<div class ="nav">
 				<li><button class="btn-default button3d" onclick="renderer.setClearColor(0xE8E8E8)"> <span class="glyphicon glyphicon-tint">Blanc</span></button></li>
 				<li><button class="btn-default button3d" onclick="renderer.setClearColor(0xBDBDBD)"><span class="glyphicon glyphicon-tint " >Gris</span></button></li>
