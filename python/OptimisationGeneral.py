@@ -178,6 +178,7 @@ def changementliaisons():
 		obj.rotation_euler = [listem[k].rotation_euler.x,listem[k].rotation_euler.y,listem[k].rotation_euler.z]
 #smooth de l'objet
 		obj.name = listem[k].name
+		scaling()
 		bpy.ops.object.shade_smooth()
 #couleur de l'objet
 		setcouleur(bpy.context.object,mat)
