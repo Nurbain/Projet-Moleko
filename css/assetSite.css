@@ -7,7 +7,6 @@
 
 body
 {
-	padding-top : 20px
 }
 
 #Lunette
@@ -84,11 +83,13 @@ ul.ulBdd li a:hover
 ul.ulBdd li a:active
 {
 	background-color: #4D4D4D;
+	border : none ;
 }
 
 ul.ulBdd li a:visited
 {
 	background-color: #4D4D4D;
+	border : none ;
 }
 #Bdd
 {
@@ -133,6 +134,13 @@ input
 	border : none
 }
 /*3D*/
+
+#name
+{
+	position:fixed;
+	z-index:1;
+	padding-left:30px;
+}
 
 .button3d
 {

@@ -1,96 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Moleko - Module 3D</title>
+<title>Module 3D App</title>
 	<meta charset="utf-8">
-	<link rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'></link>
-	<link rel='stylesheet', href='css/asset.css'></link>
-
+	<link rel='stylesheet', href='css/assetApp.css'></link>
+	<style> body {margin :0;} </style>
 </head>
 <body>
 	
-	<img id="Lunette" src='image/lunette.png' alt="Lunette" height="289" width="282"/>
-	<!-- Header site -->
-	<div id="HeaderLgn" class="row">
-		<div class="navbar nav-header">
-			<div id="Logo" class = "col-lg-3 menu">
-				<a href="http://www.moleko.fr/"><img src='image/logo.png' alt="Logo" height="195" width="318" /></a>
-			</div>
-			<div id="degrade" class ="col-lg-2 menu"><ul class="nav navbar-nav"><li><a id="hidden" href="#">.</a></li></ul> </div><!-- Changer pour un truc plus propre -->
-			<div id="Navbar" class="col-lg-7 menu">
-					<ul id="NavHead" class="nav navbar-nav header">
-						<li><a href="#">Menu1</a></li>
-						<li><a href="#">Menu2</a></li>
-						<li><a href="#">Menu3</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	<!-- Fin Header -->
-	
-	<br>
-	<br>
-	
-	<!-- Row centrale -->
-	<div class="row" >
-		<!-- Menu Base de donné -->
-		<div id="Bdd" class="col-lg-3 fixed" >
-			<ul class="nav nav-list ulBdd">
-				<li class="nav-header"><h3>Recherche Modèle</h3></li>
-				<input type="search"  placeholder="Nom molécule" class="searchmol">
-				<button type="submit" class="btn-default search"><span class="glyphicon glyphicon-search"></span></button>
-				<li class="nav-header"><h3>Nouveaux modèles ajoutés </h3></li>
-		<!-- Gérer les noms avec une base de donné SQL , nom = fichier.dae + json avec descriptif-->
-				<li><a href="#" onclick="chgmodel('Scatol.dae')">Scatol</a></li>
-				<li><a href="#" onclick="chgmodel('Pinene.dae')">Pinene</a></li>
-				<li><a href="#" onclick="chgmodel('Menthol.dae')">Menthol</a></li>
-				<li><a href="#" onclick="chgmodel('Limonène.dae')">Limonène</a></li>
-				<li><a href="#" onclick="chgmodel('Géraniol.dae')">Géraniol</a></li>
-				<li><a href="#" onclick="chgmodel('Farnesol.dae')">Farnesol</a></li>
-				<li><a href="#" onclick="chgmodel('Eucalyptol.dae')">Eucalyptol</a></li>
-				<li><a href="#" onclick="chgmodel('Crotyl_mercaptan.dae')">Crotyl_mercaptan</a></li>
-				<li><a href="#" onclick="chgmodel('Citral.dae')">Citral</a></li>
-				<li><a href="#" onclick="chgmodel('Alcool_Phenylethylique.dae')">Alcool_Phenylethylique</a></li>
-			</ul>
-		</div>
-		
-		<!-- Zone 3D -->
-		<div id="module" class="col-lg-6 ">
-		</div>
-		
-		<!-- Descriptif molécule -->
-		<div id="Descriptif" class="col-lg-3 ">
-			<h2> Descriptif </h2>
-			<p> </p>
-			<a href="https://fr.wikipedia.org/wiki/Azote"><span class="glyphicon glyphicon-info-sign"></span></a>
-		</div>
-		
-		
-	</div>
-	
-	
-	<div class="row">
-	
-	<!-- Qrcode de telechargement appli -->
-		<div class="col-lg-5">
-			<a href="#"><img id="Android" src='image/Android.png' alt="Android icon" height="70" width="200"/></a>
-			<a href="#"><img id="Apple" src='image/Apple.png' alt="Apple icon" height="55" width="192"/></a>
-		</div>
-	
-	<!-- Changement fond module 3D -->
-		<div id="Fond" class="col-lg-3 col-md-offset-1">
-			<div class ="nav">
-				<li><button class="btn-default button3d" onclick="renderer.setClearColor(0xE8E8E8)"> <span class="glyphicon glyphicon-tint">Blanc</span></button></li>
-				<li><button class="btn-default button3d" onclick="renderer.setClearColor(0xBDBDBD)"><span class="glyphicon glyphicon-tint " >Gris</span></button></li>
-				<li><button class="btn-default button3d" onclick="renderer.setClearColor(0x292929)"><span class="glyphicon glyphicon-tint " >Noir</span></button></li>
-				<li><input type="color" id="fond" placeholder="Couleur html de fond" class="colorie"><button class="btn-default button3d" onclick="fond()"><span class="glyphicon glyphicon-check"></span></button></li>
-			</div>
-	</div>
 	<script src="js/three.min.js"></script>
 	<script src="js/ColladaLoader.js"></script>
 	<script src="js/OrbitControls.js"></script>
-	<script src="js/Module.js"></script>	
+	<script src="js/ModuleApp.js"></script>	
 </body>
-</html>
+</html>	

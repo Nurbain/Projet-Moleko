@@ -4,7 +4,7 @@ var scene , renderer , camera, dae
 
 	//Création de la scène 
       scene = new THREE.Scene();
-      var WIDTH = 825;
+      var WIDTH = 775;
       var HEIGHT = 450;
 
       renderer = new THREE.WebGLRenderer({antialias:true});
@@ -20,7 +20,7 @@ var scene , renderer , camera, dae
 	 
 	//viewport
       window.addEventListener('resize', function() {
-       var WIDTH = 831;
+       var WIDTH = 775;
        var HEIGHT = 450;
         renderer.setSize(WIDTH, HEIGHT);
         camera.aspect = WIDTH / HEIGHT;
@@ -68,7 +68,7 @@ var scene , renderer , camera, dae
 		scene.add(dae);
 	});
 }
-	
+
 //Animation 
 function animate() {
     requestAnimationFrame(animate);
