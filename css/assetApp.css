@@ -1,0 +1,30 @@
+/* Button left */
+#leftbtn
+{
+	position : absolute;
+	z-index : 2;
+	height : 5%;
+	width : 8%;
+}
+
+
+/* div left */
+#left
+{
+	visibility : hidden;
+	height:60%;
+	width : 40%;
+	z-index:1;
+	position : absolute;
+	background-color : black;
+}
+
+/* Button Droit */
+#rightbtn
+{
+	position : absolute;
+	z-index : 2;
+	right : 0px;
+	height : 7%;
+	width : 7%;
+}
