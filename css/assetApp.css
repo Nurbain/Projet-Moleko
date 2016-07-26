@@ -43,32 +43,52 @@
 {
 	position : absolute;
 	top : 13%;
-	left : 35%;
-	width : 30%;
+	left : 15%;
+	width : 70%;
 	border : solid ;
 	border-width : 2px;
 	border-color :  #008C32;
+	height : 15%;
 }
 
-#bdd
+#first
 {
-	height:100%;
-	width : 100%;
-	position : absolute;
-	top : 20%;
-	list-style-type: none;
-	overflow : auto;	
+	position : absolute ;
+	top : 31%;
+	left : 1%;
+	height:33%;
+	width : 48%;
+	background-color:#CF331C;
 }
 
-#bdd h4
+#second
 {
-	font-style : italic;
-	color : #008C32;
+	position : absolute ;
+	top : 31%;
+	left : 50%;
+	height:33%;
+	width : 48%;
+	background-color:#CF331C;
 }
 
-#bdd li
+#third
 {
-	padding : 8%;
+	position : absolute ;
+	top : 66%;
+	left : 1%;
+	height:33%;
+	width : 48%;
+	background-color:#CF331C;
+}
+
+#fourth
+{
+	position : absolute ;
+	top : 66%;
+	left : 50%;
+	height:33%;
+	width : 48%;
+	background-color:#CF331C;
 }
 /* Div Right */
 
