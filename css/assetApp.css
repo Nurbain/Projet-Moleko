@@ -3,28 +3,60 @@
 {
 	position : absolute;
 	z-index : 2;
-	height : 5%;
-	width : 8%;
+	left : 2%;
+	top : 2%;
+	height : 9%;
+	width : 14%;
+	padding : 2px;
+	background-color : #CF331C ;
+	color : white ;
+	border : none ; 
+	border-radius : 7px;
+	
 }
-
-
-/* div left */
-#left
-{
-	visibility : hidden;
-	height:60%;
-	width : 40%;
-	z-index:1;
-	position : absolute;
-	background-color : black;
-}
-
 /* Button Droit */
 #rightbtn
 {
 	position : absolute;
 	z-index : 2;
-	right : 0px;
-	height : 7%;
-	width : 7%;
+	left : 84%;
+	top : 2%;
+	height : 9%;
+	width : 14%;
+	padding : 2px;
+	background-color : #CF331C ;
+	color : white ;
+	border : none ; 
+	border-radius : 7px;
+}
+
+
+/* Div left */
+#left
+{
+	position : absolute;
+	z-index : 1;
+	background-color : #F2F2F2;
+	height : 100%;
+	width : 66%;
+	border : solid;
+	border-color : #CF331C;
+	border-radius : 8px;
+	visibility : hidden;
+}
+
+
+/* Div Right */
+#right
+{
+	position : absolute;
+	z-index : 1;
+	left : 34%;
+	background-color : #F2F2F2;
+	height : 100%;
+	width : 66%;
+	border : solid;
+	border-color : #CF331C;
+	border-radius : 8px;
+	visibility : hidden;
 }
