@@ -3,31 +3,28 @@
 {
 	position : absolute;
 	z-index : 2;
-	left : 2%;
 	top : 2%;
 	height : 9%;
-	width : 14%;
+	width : 7%;
 	padding : 2px;
 	background-color : #CF331C ;
 	color : white ;
-	border : none ; 
-	border-radius : 7px;
-	
+	border : none ;
 }
 /* Button Droit */
 #rightbtn
 {
 	position : absolute;
 	z-index : 2;
-	left : 84%;
+	left : 93%;
 	top : 2%;
 	height : 9%;
-	width : 14%;
+	width : 7%;
 	padding : 2px;
 	background-color : #CF331C ;
 	color : white ;
-	border : none ; 
-	border-radius : 7px;
+	border:none;
+
 }
 
 
@@ -39,14 +36,42 @@
 	background-color : #F2F2F2;
 	height : 100%;
 	width : 66%;
-	border : solid;
-	border-color : #CF331C;
-	border-radius : 8px;
 	visibility : hidden;
 }
 
+#recherche
+{
+	position : absolute;
+	top : 13%;
+	left : 35%;
+	width : 30%;
+	border : solid ;
+	border-width : 2px;
+	border-color :  #008C32;
+}
 
+#bdd
+{
+	height:100%;
+	width : 100%;
+	position : absolute;
+	top : 20%;
+	list-style-type: none;
+	overflow : auto;	
+}
+
+#bdd h4
+{
+	font-style : italic;
+	color : #008C32;
+}
+
+#bdd li
+{
+	padding : 8%;
+}
 /* Div Right */
+
 #right
 {
 	position : absolute;
@@ -55,8 +80,48 @@
 	background-color : #F2F2F2;
 	height : 100%;
 	width : 66%;
-	border : solid;
-	border-color : #CF331C;
-	border-radius : 8px;
 	visibility : hidden;
+}
+
+#Infos
+{
+	margin-left:2%;
+}
+
+#Name
+{
+	top : 2%;
+	color : #008C32;
+}
+
+#Formul
+{
+	font-style : italic ;
+	color : #008C32;
+}
+
+#Description
+{
+	font-style : justify;
+}
+
+#option
+{
+	position : absolute;
+	bottom : 0%;
+	margin-left : 2%;
+	font-style : italic;
+}
+
+#wiki
+{
+	position : absolute ;
+	display : inline;
+	font-size : x-small;
+	margin-top : 1%;
+}
+
+#lien
+{
+	color : #008C32;
 }
