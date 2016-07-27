@@ -189,6 +189,7 @@ input
 	border-top : none ;
 	border-color : #008C32;
 	height : 350px;
+	overflow : auto;
 }
 
 
