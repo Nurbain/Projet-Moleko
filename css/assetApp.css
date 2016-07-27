@@ -48,8 +48,8 @@
 	border : solid ;
 	border-width : 2px;
 	border-color :  #008C32;
-	height : 15%;
-	font-size : xx-large;
+	height : 10%;
+	font-size : x-large;
 }
 
 .nom
@@ -57,14 +57,14 @@
 font-size : xx-large;
 color : white;
 margin-top : 15%;
-margin-left : 40%;
+padding-left : 1%;
 }
 
 .chi
 {
 font-size : x-large;
 color : white;
-margin-left : 40%;
+padding-left : 1%;
 }
 
 
@@ -130,6 +130,7 @@ margin-left : 40%;
 	top : 2%;
 	color : #008C32;
 	font-size: xx-large ; 
+	padding-bottom : 0%;
 }
 
 #Formul
@@ -137,6 +138,7 @@ margin-left : 40%;
 	font-style : italic ;
 	color : #008C32;
 	font-size : x-large ;
+	line-height :0.05;
 }
 
 #Description
