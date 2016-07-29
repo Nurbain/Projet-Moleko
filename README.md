@@ -18,7 +18,7 @@ Ce répértoire github comporte tous les travaux effectués lors de ce laps de t
 - Un site Web affichant la molécule en 3D, sa déscription , son nom.
   Page web "indexSite"
 
-- Un site pour usage mobile sous forme d'application reprennant les mêmes fonctionalitées que précédement mais avec un design plus légé pour une utilisation plus simple
+- Un site pour usage mobile sous forme d'application reprennant les mêmes fonctionalitées que précédement mais avec un design plus légé pour une utilisation plus simple.
   Page web "index"
 
 
